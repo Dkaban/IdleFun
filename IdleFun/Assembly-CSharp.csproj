@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Code\DataSerializer.cs" />
     <Compile Include="Assets\Code\IdleHandler.cs" />
     <Compile Include="Assets\Code\MainUI.cs" />
     <Reference Include="Unity.Timeline.Editor">

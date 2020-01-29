@@ -1,27 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class IdleHandler : MonoBehaviour
+namespace IdleFun
 {
-    #region SINGLETON SETUP
-    public static IdleHandler Instance = null;
-    private void Awake()
+    public class IdleHandler : MonoBehaviour
     {
-        if (Instance == null)
-            Instance = this;
-        else if (Instance != this)
-            Destroy(gameObject);
-    }
-    #endregion
+        #region SINGLETON SETUP
+        public static IdleHandler Instance = null;
+        private void Awake()
+        {
+            if (Instance == null)
+                Instance = this;
+            else if (Instance != this)
+                Destroy(gameObject);
+        }
+        #endregion
 
-    private void Start()
-    {
-        
-    }
+        private void Start()
+        {
 
-    public void ButtonTapped()
-    {
+        }
 
+        public void ButtonTapped()
+        {
+
+        }
     }
 }
