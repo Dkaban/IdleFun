@@ -18,36 +18,60 @@ namespace IdleFun
         }
         #endregion
 
-        public JsonData data;
-        public string path;
+        #region JSON Saving Variables
+        private string _savedDataPath;
+        #endregion
+
+        #region GameState Variables
+        private DateTime _currentTime;
+        private DateTime _loadedTime;
+        #endregion
+
         public void Start()
         {
             //Load the time from the JSON File, but first we need to verify that it exists.
-            path = Path.Combine(Application.persistentDataPath, "saved files", "data.json");
+            _savedDataPath = Path.Combine(Application.persistentDataPath, "saved files", "gameData.json");
+
+            if(File.Exists(_savedDataPath))
+            {
+                //Deserialize the data from the Json File if the file exists
+                DeserializeData();
+            }
+            else
+            {
+                //If the file doesn't exist, lets create one
+                Debug.LogError("Cannot load game data!");
+                SerializeData();
+            }
         }
 
         public void SerializeData()
         {
-            string jsonDataString = JsonUtility.ToJson(data, true);
-            File.WriteAllText(path, jsonDataString);
-            Debug.Log(jsonDataString);
+            string jsonDataString = JsonUtility.ToJson((JsonDateTime) DateTime.Now, true);
+            File.WriteAllText(_savedDataPath, jsonDataString);
+            _currentTime = (JsonDateTime)DateTime.Now;
+            Debug.Log("Saved Time : " + _currentTime);
         }
 
         public void DeserializeData()
         {
-            string loadedJsonDataString = File.ReadAllText(path);
-            data = JsonUtility.FromJson<JsonData>(loadedJsonDataString);
-            Debug.Log("Time : " + data.Time.ToString());
+            string loadedJsonDataString = File.ReadAllText(_savedDataPath);
+            _loadedTime = JsonUtility.FromJson<JsonDateTime>(loadedJsonDataString);
+            Debug.Log("Loaded Time : " + _loadedTime);
         }
     }
-
-    public class JsonData
+    struct JsonDateTime
     {
-        public DateTime Time;
-
-        public JsonData(DateTime time)
+        public long value;
+        public static implicit operator DateTime(JsonDateTime jdt)
         {
-            this.Time = time;
+            return DateTime.FromFileTime(jdt.value);
+        }
+        public static implicit operator JsonDateTime(DateTime dt)
+        {
+            JsonDateTime jdt = new JsonDateTime();
+            jdt.value = dt.ToFileTime();
+            return jdt;
         }
     }
 }

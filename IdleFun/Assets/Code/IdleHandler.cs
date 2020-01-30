@@ -20,6 +20,20 @@ namespace IdleFun
 
         }
 
+        public void FixedUpdate()
+        {
+            if(Input.GetKey(KeyCode.H))
+            {
+                //Serialize
+                DataSerializer.Instance.SerializeData();
+            }
+
+            if(Input.GetKey(KeyCode.D))
+            {
+                DataSerializer.Instance.DeserializeData();
+            }
+        }
+
         public void ButtonTapped()
         {
 

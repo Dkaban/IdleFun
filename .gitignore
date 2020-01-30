@@ -1,0 +1,6 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/IdleFun/.vs/IdleFun/v16/Server/sqlite3/storage.ide-shm
+/IdleFun/.vs/IdleFun/v16/Server/sqlite3/storage.ide-wal
