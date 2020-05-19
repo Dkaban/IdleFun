@@ -1,4 +1,5 @@
 # IdleFun
 Creating an Idle Game for Mobile
 
-Testing GitHub Repo
+A small idle game side project.
+Currently have JSON Serialization working.
