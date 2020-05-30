@@ -1,5 +1,9 @@
 # IdleFun
-Creating an Idle Game for Mobile
+## Built in: Unity3D
+## Language: C#
 
-A small idle game side project.
-Currently have JSON Serialization working.
+### This is currently a work in progress
+
+#### Creating an Idle Game for Mobile
+- A small idle game side project.
+- Currently have JSON Serialization working.
